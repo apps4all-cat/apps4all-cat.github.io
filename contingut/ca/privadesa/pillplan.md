@@ -28,6 +28,7 @@ Aquestes dades són informació de salut. Per això es guarden **només a l'emma
 - **Notificacions, alarmes exactes i alarma a pantalla completa**: perquè l'alarma soni a l'hora justa, també amb el mòbil bloquejat.
 - **Iniciar en encendre el mòbil**: per tornar a programar les alarmes després de reiniciar-lo.
 - **Vibració i mantenir la pantalla activa**: durant l'alarma.
+
 Si el teu mòbil atura les alarmes per estalviar bateria, l'app t'explica com treure-li les restriccions des dels ajustos del mòbil. No cal cap permís per a això.
 
 La veu que diu què cal prendre fa servir el motor de veu del propi mòbil (síntesi de veu d'Android), dins del dispositiu.
