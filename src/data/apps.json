@@ -20,7 +20,7 @@
     ],
     "playUrl": null,
     "fdroidUrl": null,
-    "repoUrl": null
+    "repoUrl": "https://github.com/apps4all-cat/verbs"
   },
   {
     "id": "paisos",
@@ -41,7 +41,7 @@
     ],
     "playUrl": null,
     "fdroidUrl": null,
-    "repoUrl": null
+    "repoUrl": "https://github.com/apps4all-cat/paisos"
   },
   {
     "id": "pillplan",
