@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import { t, routes, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const tx = t[lang].privacy;
+const other: Lang = lang === 'ca' ? 'es' : 'ca';
+---
+
+<Base lang={lang} title={tx.title} description={tx.body[0]} alternate={routes[other].privacy}>
+  <article class="wrap estret">
+    <h1>{tx.title}</h1>
+    {tx.body.map((p) => <p>{p}</p>)}
+  </article>
+</Base>
+
+<style>
+  .estret { max-width: 44rem; padding-top: 40px; padding-bottom: 32px; }
+</style>

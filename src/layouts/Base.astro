@@ -1,0 +1,104 @@
+---
+import '../styles/global.css';
+import { CONFIG } from '../config';
+import { t, routes, langName, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** Adreça de la mateixa pàgina en l'altre idioma */
+  alternate: string;
+}
+
+const { lang, title, description, alternate } = Astro.props;
+const tx = t[lang];
+const r = routes[lang];
+const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const fullTitle = title ? `${title} · Apps4All` : 'Apps4All';
+const desc = description ?? tx.siteDesc;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const altUrl = new URL(alternate, Astro.site);
+const ogImage = new URL('/img/marca/og.png', Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang={lang} href={canonical} />
+    <link rel="alternate" hreflang={other} href={altUrl} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#2f3b43" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Apps4All" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === 'ca' ? 'ca_ES' : 'es_ES'} />
+    {CONFIG.goatcounter && (
+      <script is:inline async data-goatcounter={`https://${CONFIG.goatcounter}.goatcounter.com/count`} src="https://gc.zgo.at/count.js"></script>
+    )}
+  </head>
+  <body>
+    <a class="skip" href="#contingut">{tx.skip}</a>
+    <div class="cinta" aria-hidden="true"></div>
+    <header class="capcalera">
+      <div class="wrap fila">
+        <a class="marca" href={r.home} aria-label="Apps4All">
+          <img src="/img/marca/a4-160.webp" width="57" height="44" alt="" />
+          <span class="wordmark">apps<span class="quatre">4</span>all</span>
+        </a>
+        <nav aria-label="Menú">
+          <a href={`${r.home}#apps`}>{tx.nav.apps}</a>
+          <a href={r.about}>{tx.nav.about}</a>
+          <a class="nav-cafe" href={r.support}>☕ {tx.nav.support}</a>
+          <a class="nav-lang" href={alternate} hreflang={other} lang={other}>{langName[other]}</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contingut">
+      <slot />
+    </main>
+
+    <footer class="peu">
+      <div class="wrap peu-fila">
+        <div>
+          <span class="wordmark">apps<span class="quatre">4</span>all</span>
+          <p class="suau">{tx.footer.tagline}</p>
+        </div>
+        <ul>
+          <li><a href={r.support}>{tx.nav.support}</a></li>
+          <li><a href={r.privacy}>{tx.footer.privacy}</a></li>
+          <li><a href={`mailto:${CONFIG.email}`}>{tx.footer.contact}</a></li>
+        </ul>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .capcalera { border-bottom: 1px solid var(--line); }
+  .fila { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-top: 12px; padding-bottom: 12px; }
+  .marca { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 1.45rem; }
+  .marca img { width: 57px; height: 44px; }
+  nav { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 18px; font-weight: 600; font-size: 0.98rem; }
+  nav a { color: var(--text); text-decoration: none; padding: 6px 0; }
+  nav a:hover { color: var(--accent); }
+  .nav-cafe { color: var(--accent); }
+  .nav-lang { font-weight: 500; color: var(--text-suau); }
+  @media (min-width: 640px) { .nav-lang { border-left: 1px solid var(--line); padding-left: 18px; } }
+  .peu { border-top: 1px solid var(--line); padding: 32px 0 40px; margin-top: 24px; }
+  .peu-fila { display: flex; justify-content: space-between; gap: 16px 40px; flex-wrap: wrap; }
+  .peu .wordmark { font-size: 1.2rem; }
+  .peu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  .peu a { color: var(--text-suau); }
+</style>

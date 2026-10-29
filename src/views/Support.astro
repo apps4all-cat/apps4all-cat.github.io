@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import { CONFIG } from '../config';
+import { t, routes, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const tx = t[lang].support;
+const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const hasAny = CONFIG.liberapay || CONFIG.paypal;
+---
+
+<Base lang={lang} title={tx.title} description={tx.lead} alternate={routes[other].support}>
+  <article class="wrap estret">
+    <h1>☕ {tx.title}</h1>
+    <p class="lead">{tx.lead}</p>
+    {tx.body.map((p) => <p>{p}</p>)}
+
+    {hasAny ? (
+      <div class="opcions">
+        {CONFIG.liberapay && (
+          <a class="opcio" href={CONFIG.liberapay} rel="noopener">
+            <strong>Liberapay</strong><span class="suau">{tx.liberapay}</span>
+          </a>
+        )}
+        {CONFIG.paypal && (
+          <a class="opcio" href={CONFIG.paypal} rel="noopener">
+            <strong>PayPal</strong><span class="suau">{tx.paypal}</span>
+          </a>
+        )}
+      </div>
+    ) : (
+      <p class="avis">{tx.soon}</p>
+    )}
+
+    <p class="suau menors">{tx.minors}</p>
+    <p><strong>{tx.thanks}</strong></p>
+  </article>
+</Base>
+
+<style>
+  .estret { max-width: 44rem; padding-top: 40px; padding-bottom: 32px; }
+  .lead { font-size: 1.2rem; font-weight: 600; }
+  .opcions { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); margin: 28px 0; }
+  .opcio {
+    display: flex; flex-direction: column; gap: 4px; padding: 20px 22px; border-radius: var(--radius);
+    border: 2px solid var(--line); text-decoration: none; color: var(--text); background: var(--card);
+  }
+  .opcio strong { font-size: 1.2rem; color: var(--accent); }
+  .opcio:hover { border-color: var(--taronja); }
+  .avis { margin: 28px 0; padding: 16px 20px; border-radius: var(--radius); background: var(--bg-alt); }
+  .menors { font-size: 0.95rem; }
+</style>

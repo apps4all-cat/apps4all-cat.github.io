@@ -1,0 +1,16 @@
+---
+import Base from '../layouts/Base.astro';
+import { t, routes } from '../i18n';
+---
+
+<Base lang="ca" title={t.ca.notFound.title} alternate={routes.es.home}>
+  <div class="wrap estret">
+    <h1>{t.ca.notFound.title}</h1>
+    <p lang="es" class="suau">{t.es.notFound.title}.</p>
+    <p><a class="btn" href={routes.ca.home}>{t.ca.notFound.back}</a></p>
+  </div>
+</Base>
+
+<style>
+  .estret { max-width: 44rem; padding-top: 56px; padding-bottom: 56px; }
+</style>

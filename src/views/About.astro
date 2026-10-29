@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { CONFIG } from '../config';
+import { t, routes, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const tx = t[lang].about;
+const other: Lang = lang === 'ca' ? 'es' : 'ca';
+---
+
+<Base lang={lang} title={tx.title} description={tx.body[0]} alternate={routes[other].about}>
+  <article class="wrap estret">
+    <h1>{tx.title}</h1>
+    {tx.body.map((p) => <p>{p}</p>)}
+
+    <h2>{tx.principlesTitle}</h2>
+    <ul class="principis">
+      {tx.principles.map(([titol, text]) => <li><strong>{titol}</strong> {text}</li>)}
+    </ul>
+
+    <h2>{tx.contact}</h2>
+    <p><a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a></p>
+  </article>
+</Base>
+
+<style>
+  .estret { max-width: 44rem; padding-top: 40px; padding-bottom: 32px; }
+  h2 { margin-top: 1.6em; }
+  .principis { padding-left: 1.2em; }
+  .principis li { margin-bottom: 0.5em; }
+  .principis li::marker { color: var(--taronja); }
+</style>

@@ -1,0 +1,99 @@
+/* Colors del logo d'Apps4All (TRB/Apps4All/Imatge/Logo_OK.png i Paleta.jpeg). */
+:root {
+  --carbo: #2f3b43; /* text del logotip */
+  --carbo-fosc: #1e222c;
+  --coure: #933d2a; /* el «4» */
+  --grana: #5f2130;
+  --taronja: #cc7a28;
+  --or: #da973c;
+
+  --bg: #ffffff;
+  --bg-alt: #f6f3ef;
+  --text: var(--carbo);
+  --text-suau: #5b6670;
+  --accent: var(--coure);
+  --accent-text: #ffffff;
+  --line: #e4ded6;
+  --card: #ffffff;
+  --shadow: 0 1px 2px rgb(30 34 44 / 0.06), 0 4px 16px rgb(30 34 44 / 0.06);
+  --cinta: linear-gradient(90deg, var(--grana), var(--coure) 35%, var(--taronja) 70%, var(--or));
+
+  --radius: 18px;
+  --max: 68rem;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161a20;
+    --bg-alt: #1e232b;
+    --text: #ece7e1;
+    --text-suau: #a9b1b8;
+    --accent: #e39a4a;
+    --accent-text: #1e222c;
+    --line: #2e353f;
+    --card: #1e232b;
+    --shadow: none;
+  }
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 3px solid var(--taronja); outline-offset: 2px; border-radius: 4px; }
+
+h1, h2, h3 { line-height: 1.2; letter-spacing: -0.015em; margin: 0 0 0.6em; }
+h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+h3 { font-size: 1.15rem; }
+p { margin: 0 0 1em; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
+@media (min-width: 640px) { .wrap { padding: 0 24px; } }
+
+.skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-text); padding: 8px 12px; z-index: 10; }
+.skip:focus { left: 8px; top: 8px; }
+
+/* Logotip en text: «apps4all» amb el 4 de color coure */
+.wordmark { font-weight: 800; letter-spacing: -0.02em; color: var(--text); }
+.wordmark .quatre { color: var(--coure); }
+@media (prefers-color-scheme: dark) { .wordmark .quatre { color: var(--taronja); } }
+
+.cinta { height: 4px; background: var(--cinta); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  padding: 0.75em 1.3em; border-radius: 999px;
+  background: var(--accent); color: var(--accent-text);
+  font-weight: 700; text-decoration: none; border: 0;
+}
+.btn:hover { filter: brightness(1.08); }
+.btn-sec { background: transparent; color: var(--text); box-shadow: inset 0 0 0 2px var(--line); }
+
+.tag {
+  display: inline-block; font-size: 0.8rem; font-weight: 700;
+  padding: 0.15em 0.7em; border-radius: 999px;
+  background: rgb(204 122 40 / 0.14); color: var(--accent);
+}
+
+.suau { color: var(--text-suau); }
+.section { padding: 48px 0; }
+.section-alt { background: var(--bg-alt); }

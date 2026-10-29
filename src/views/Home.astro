@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import AppCard from '../components/AppCard.astro';
+import { apps } from '../data/apps';
+import { t, routes, type Lang } from '../i18n';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const tx = t[lang];
+const other: Lang = lang === 'ca' ? 'es' : 'ca';
+---
+
+<Base lang={lang} alternate={routes[other].home}>
+  <section class="hero">
+    <div class="wrap hero-fila">
+      <div>
+        <h1>{tx.home.title}</h1>
+        <p class="lead">{tx.home.lead}</p>
+        <div class="botons">
+          <a class="btn" href="#apps">{tx.nav.apps}</a>
+          <a class="btn btn-sec" href={routes[lang].about}>{tx.nav.about}</a>
+        </div>
+      </div>
+      <img class="hero-logo" src="/img/marca/a4-480.webp" width="480" height="373" alt="" />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <ul class="wrap principis">
+      {tx.home.principles.map(([titol, text]) => (
+        <li><strong>{titol}</strong><span class="suau">{text}</span></li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="section" id="apps">
+    <div class="wrap">
+      <h2>{tx.home.appsTitle}</h2>
+      <ul class="graella">
+        {apps.map((app) => <li><AppCard app={app} lang={lang} /></li>)}
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 40px 0 32px; }
+  .hero-fila { display: grid; gap: 24px; align-items: center; }
+  @media (min-width: 760px) { .hero-fila { grid-template-columns: 1.4fr 1fr; } .hero { padding: 64px 0 56px; } }
+  .lead { font-size: 1.2rem; color: var(--text-suau); max-width: 36em; }
+  .botons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .hero-logo { width: min(100%, 340px); justify-self: center; }
+  @media (prefers-color-scheme: dark) { .hero-logo { filter: drop-shadow(0 0 28px rgb(236 231 225 / 0.12)); } }
+  @media (max-width: 759px) { .hero-logo { width: 180px; order: -1; justify-self: start; } }
+  .principis { list-style: none; margin: 0 auto; display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+  .principis li { display: flex; flex-direction: column; gap: 4px; padding-left: 14px; border-left: 4px solid var(--taronja); }
+  .graella { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr)); }
+</style>
