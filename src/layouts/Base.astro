@@ -79,6 +79,7 @@ const ogImage = new URL('/img/marca/og.png', Astro.site);
         <ul>
           <li><a href={r.support}>{tx.menu.cafe}</a></li>
           <li><a href={r.privacy}>{tx.peu.privadesa}</a></li>
+          {CONFIG.instagram && <li><a href={CONFIG.instagram} rel="me noopener">Instagram</a></li>}
           <li><a href={`mailto:${CONFIG.email}`}>{tx.peu.contacte}</a></li>
         </ul>
       </div>
