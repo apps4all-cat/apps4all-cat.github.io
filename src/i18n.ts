@@ -5,8 +5,8 @@ import type { Lang } from './data/apps';
 export type { Lang };
 
 export const routes = {
-  ca: { home: '/', support: '/suport/', about: '/sobre/', privacy: '/privacitat/', app: (id: string) => `/apps/${id}/` },
-  es: { home: '/es/', support: '/es/apoyo/', about: '/es/sobre/', privacy: '/es/privacidad/', app: (id: string) => `/es/apps/${id}/` },
+  ca: { home: '/', support: '/suport/', about: '/sobre/', privacy: '/privacitat/', policy: (id: string) => `/privacitat/${id}/`, app: (id: string) => `/apps/${id}/` },
+  es: { home: '/es/', support: '/es/apoyo/', about: '/es/sobre/', privacy: '/es/privacidad/', policy: (id: string) => `/es/privacidad/${id}/`, app: (id: string) => `/es/apps/${id}/` },
 } as const;
 
 export const otherLang = (lang: Lang): Lang => (lang === 'ca' ? 'es' : 'ca');

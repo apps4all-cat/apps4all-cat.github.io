@@ -1,0 +1,12 @@
+---
+import Policy from '../../../views/Policy.astro';
+import { policies } from '../../../content';
+
+export function getStaticPaths() {
+  return policies('ca').map((p) => ({ params: { id: p.id }, props: p }));
+}
+
+const { id, data, Content } = Astro.props;
+---
+
+<Policy lang="ca" id={id} data={data} Content={Content} />

@@ -21,6 +21,9 @@ peu:
   lema: Apps gratuitas, sin anuncios y sin rastreo.
   privadesa: Privacidad
   contacte: Contacto
+privadesa:
+  apps: Políticas de privacidad de las apps
+  actualitzat: Última actualización
 error_404:
   titol: Esta página no existe
   tornar: Vuelve al inicio

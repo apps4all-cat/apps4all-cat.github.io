@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import type { App } from '../data/apps';
 import { routes, langNameIn, otherLang, type Lang } from '../i18n';
-import { appText, texts } from '../content';
+import { appText, texts, hasPolicy } from '../content';
 
 interface Props { app: App; lang: Lang }
 const { app, lang } = Astro.props;
@@ -40,10 +40,10 @@ const hasStore = app.playUrl || app.fdroidUrl;
         <dl>
           <dt>{tx.versio}</dt><dd>{app.version}</dd>
           <dt>{tx.idiomes}</dt><dd>{app.languages.map((l) => langNameIn[lang][l]).join(', ')}</dd>
-          <dt>{tx.permisos}</dt><dd>{app.permissions.length ? app.permissions.join(', ') : tx.cap_permis}</dd>
+          <dt>{tx.permisos}</dt><dd>{data.permisos ?? (app.permissions.length ? app.permissions.join(', ') : tx.cap_permis)}</dd>
         </dl>
         <ul class="enllacos">
-          {app.privacyUrl && <li><a href={app.privacyUrl}>{tx.privadesa}</a></li>}
+          {hasPolicy(lang, app.id) && <li><a href={routes[lang].policy(app.id)}>{tx.privadesa}</a></li>}
           {app.repoUrl && <li><a href={app.repoUrl}>{tx.codi}</a></li>}
         </ul>
       </aside>

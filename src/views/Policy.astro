@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { routes, otherLang, type Lang } from '../i18n';
+import { texts, hasPolicy } from '../content';
+
+interface Props {
+  lang: Lang;
+  id: string;
+  data: Record<string, any>;
+  Content: any;
+}
+const { lang, id, data, Content } = Astro.props;
+const other = otherLang(lang);
+// Si la política no existeix en l'altre idioma, l'enllaç d'idioma porta a la pàgina de privadesa general.
+const alternate = hasPolicy(other, id) ? routes[other].policy(id) : routes[other].privacy;
+---
+
+<Base lang={lang} title={data.titol} alternate={alternate}>
+  <article class="wrap estret">
+    <h1>{data.titol}</h1>
+    <p class="suau">Apps4All · {texts(lang).privadesa.actualitzat}: {data.actualitzat}</p>
+    <div class="politica"><Content /></div>
+  </article>
+</Base>
+
+<style>
+  .estret { max-width: 46rem; padding-top: 40px; padding-bottom: 32px; }
+  .politica :global(h2) { font-size: 1.2rem; margin-top: 1.8em; }
+  .politica :global(blockquote) { margin: 24px 0; padding: 16px 20px; border-radius: var(--radius); background: var(--bg-alt); border-left: 6px solid var(--taronja); }
+  .politica :global(blockquote p) { margin: 0; }
+  .politica :global(ul) { padding-left: 1.2em; }
+  .politica :global(li) { margin-bottom: 0.4em; }
+</style>

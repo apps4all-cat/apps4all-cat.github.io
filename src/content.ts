@@ -7,6 +7,7 @@ type MdModule = { frontmatter: Record<string, unknown>; Content: any };
 
 const pages = import.meta.glob<MdModule>('../contingut/*/*.md', { eager: true });
 const appPages = import.meta.glob<MdModule>('../contingut/*/apps/*.md', { eager: true });
+const policyPages = import.meta.glob<MdModule>('../contingut/*/privadesa/*.md', { eager: true });
 const shortTexts = import.meta.glob<string>('../contingut/*/textos.yml', { eager: true, query: '?raw', import: 'default' });
 
 export const LANGS: Lang[] = ['ca', 'es'];
@@ -48,6 +49,22 @@ export function page(lang: Lang, name: PageName) {
   return p;
 }
 
+/** Polítiques de privadesa de les apps que hi ha a contingut/<idioma>/privadesa/ (no cal que l'app surti al web). */
+export function policies(lang: Lang) {
+  const prefix = `../contingut/${lang}/privadesa/`;
+  return Object.keys(policyPages)
+    .filter((k) => k.startsWith(prefix))
+    .map((k) => {
+      const id = k.slice(prefix.length, -'.md'.length);
+      return { id, ...md(policyPages, `${lang}/privadesa/${id}.md`, ['titol', 'actualitzat']) };
+    })
+    .sort((a, b) => a.data.titol.localeCompare(b.data.titol, lang));
+}
+
+export function hasPolicy(lang: Lang, id: string) {
+  return `../contingut/${lang}/privadesa/${id}.md` in policyPages;
+}
+
 export function appText(lang: Lang, id: string) {
   return md(appPages, `${lang}/apps/${id}.md`, ['nom', 'resum']);
 }
@@ -57,6 +74,7 @@ const SHORT_FIELDS = [
   'menu.apps', 'menu.qui_som', 'menu.cafe',
   'fitxa.per_a_escola', 'fitxa.descarrega', 'fitxa.aviat', 'fitxa.versio', 'fitxa.idiomes', 'fitxa.permisos',
   'fitxa.cap_permis', 'fitxa.captures', 'fitxa.privadesa', 'fitxa.codi', 'fitxa.tornar',
+  'privadesa.apps', 'privadesa.actualitzat',
   'peu.lema', 'peu.privadesa', 'peu.contacte',
   'error_404.titol', 'error_404.tornar',
 ];
@@ -77,6 +95,7 @@ export function texts(lang: Lang) {
     menu: { apps: string; qui_som: string; cafe: string };
     fitxa: Record<'per_a_escola' | 'descarrega' | 'aviat' | 'versio' | 'idiomes' | 'permisos' | 'cap_permis' | 'captures' | 'privadesa' | 'codi' | 'tornar', string>;
     peu: { lema: string; privadesa: string; contacte: string };
+    privadesa: { apps: string; actualitzat: string };
     error_404: { titol: string; tornar: string };
   };
 }

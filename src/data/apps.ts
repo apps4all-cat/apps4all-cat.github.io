@@ -16,7 +16,6 @@ export interface App {
   playUrl: string | null;
   fdroidUrl: string | null;
   repoUrl: string | null;
-  privacyUrl: string | null;
 }
 
 function fail(id: string, msg: string): never {
@@ -34,7 +33,7 @@ function validate(a: any, seen: Set<string>): App {
   if (typeof a.version !== 'string') fail(id, 'version ha de ser text');
   if (typeof a.icon !== 'string' || !a.icon.startsWith('/')) fail(id, 'icon ha de ser un camí que comenci per /');
   if (!Array.isArray(a.screenshots)) fail(id, 'screenshots ha de ser una llista');
-  for (const k of ['playUrl', 'fdroidUrl', 'repoUrl', 'privacyUrl'] as const) {
+  for (const k of ['playUrl', 'fdroidUrl', 'repoUrl'] as const) {
     if (a[k] !== null && !(typeof a[k] === 'string' && /^https:\/\//.test(a[k]))) fail(id, `${k} ha de ser null o una URL https`);
   }
   return a as App;

@@ -20,8 +20,7 @@
     ],
     "playUrl": null,
     "fdroidUrl": null,
-    "repoUrl": null,
-    "privacyUrl": null
+    "repoUrl": null
   },
   {
     "id": "paisos",
@@ -42,7 +41,30 @@
     ],
     "playUrl": null,
     "fdroidUrl": null,
-    "repoUrl": null,
-    "privacyUrl": "https://eo3x.github.io/apps4all-legal/paisos/"
+    "repoUrl": null
+  },
+  {
+    "id": "pillplan",
+    "package": "com.apps4all.pillplan",
+    "audience": "general",
+    "languages": [
+      "ca",
+      "es"
+    ],
+    "permissions": [
+      "POST_NOTIFICATIONS",
+      "SCHEDULE_EXACT_ALARM",
+      "USE_FULL_SCREEN_INTENT",
+      "RECEIVE_BOOT_COMPLETED",
+      "VIBRATE",
+      "WAKE_LOCK",
+      "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+    ],
+    "version": "0.3.2",
+    "icon": "/img/pillplan/icona.webp",
+    "screenshots": [],
+    "playUrl": null,
+    "fdroidUrl": null,
+    "repoUrl": null
   }
 ]
