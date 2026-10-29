@@ -8,7 +8,7 @@
       "es"
     ],
     "permissions": [],
-    "version": "1.3",
+    "version": "1.4",
     "icon": "/img/verbs/icona.webp",
     "screenshots": [
       "/img/verbs/captura-1.webp",
@@ -30,7 +30,7 @@
       "ca"
     ],
     "permissions": [],
-    "version": "1.10",
+    "version": "1.11",
     "icon": "/img/paisos/icona.webp",
     "screenshots": [
       "/img/paisos/captura-1.webp",
@@ -57,12 +57,18 @@
       "USE_FULL_SCREEN_INTENT",
       "RECEIVE_BOOT_COMPLETED",
       "VIBRATE",
-      "WAKE_LOCK",
-      "REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"
+      "WAKE_LOCK"
     ],
-    "version": "0.3.2",
+    "version": "0.3.3",
     "icon": "/img/pillplan/icona.webp",
-    "screenshots": [],
+    "screenshots": [
+      "/img/pillplan/captura-1.webp",
+      "/img/pillplan/captura-2.webp",
+      "/img/pillplan/captura-3.webp",
+      "/img/pillplan/captura-4.webp",
+      "/img/pillplan/captura-5.webp",
+      "/img/pillplan/captura-6.webp"
+    ],
     "playUrl": null,
     "fdroidUrl": null,
     "repoUrl": null

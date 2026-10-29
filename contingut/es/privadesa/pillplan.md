@@ -28,7 +28,7 @@ Estos datos son información de salud. Por eso se guardan **solo en el almacenam
 - **Notificaciones, alarmas exactas y alarma a pantalla completa**: para que la alarma suene a la hora exacta, también con el móvil bloqueado.
 - **Iniciar al encender el móvil**: para volver a programar las alarmas después de reiniciarlo.
 - **Vibración y mantener la pantalla activa**: durante la alarma.
-- **Ignorar la optimización de la batería** (opcional): para que algunos fabricantes no detengan las alarmas.
+Si tu móvil detiene las alarmas para ahorrar batería, la app te explica cómo quitarle las restricciones desde los ajustes del móvil. No hace falta ningún permiso para ello.
 
 La voz que dice qué hay que tomar usa el motor de voz del propio móvil (síntesis de voz de Android), dentro del dispositivo.
 
