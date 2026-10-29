@@ -2,37 +2,22 @@
   {
     "id": "verbs",
     "package": "cat.apps4all.verbsirregulars",
-    "name": { "ca": "Irregular Verbs", "es": "Irregular Verbs" },
-    "shortDesc": {
-      "ca": "Els 99 verbs irregulars més importants de l'anglès, amb jocs i àudio gravat.",
-      "es": "Los 99 verbos irregulares más importantes del inglés, con juegos y audio grabado."
-    },
-    "longDesc": {
-      "ca": "Pensada per a l'ESO: aprèn les tres formes de cada verb i la seva traducció pas a pas, per grups, fins que el full d'examen sigui un joc.",
-      "es": "Pensada para la ESO: aprende las tres formas de cada verbo y su traducción paso a paso, por grupos, hasta que la hoja de examen sea un juego."
-    },
-    "features": {
-      "ca": [
-        "Estudia per grups, amb la traducció al català o al castellà.",
-        "Trios i Completa la taula per fixar les tres formes.",
-        "Simulacre d'examen amb nota sobre 10, del nivell fàcil al «com a l'examen».",
-        "Dictat i frases en context amb àudio gravat, que funciona sense connexió.",
-        "Estrelles, col·lecció i aspecte clar o fosc."
-      ],
-      "es": [
-        "Estudia por grupos, con la traducción al catalán o al castellano.",
-        "Trios y Completa la tabla para fijar las tres formas.",
-        "Simulacro de examen con nota sobre 10, del nivel fácil al «como en el examen».",
-        "Dictado y frases en contexto con audio grabado, que funciona sin conexión.",
-        "Estrellas, colección y aspecto claro u oscuro."
-      ]
-    },
     "audience": "escola",
-    "languages": ["ca", "es"],
+    "languages": [
+      "ca",
+      "es"
+    ],
     "permissions": [],
     "version": "1.3",
     "icon": "/img/verbs/icona.webp",
-    "screenshots": [],
+    "screenshots": [
+      "/img/verbs/captura-1.webp",
+      "/img/verbs/captura-2.webp",
+      "/img/verbs/captura-3.webp",
+      "/img/verbs/captura-4.webp",
+      "/img/verbs/captura-5.webp",
+      "/img/verbs/captura-6.webp"
+    ],
     "playUrl": null,
     "fdroidUrl": null,
     "repoUrl": null,
@@ -41,33 +26,10 @@
   {
     "id": "paisos",
     "package": "cat.apps4all.paisoscapitals",
-    "name": { "ca": "Països i Capitals", "es": "Països i Capitals" },
-    "shortDesc": {
-      "ca": "Aprèn els països i les capitals d'Europa, Amèrica, Àsia, Àfrica i Oceania jugant.",
-      "es": "Aprende los países y capitales de Europa, América, Asia, África y Oceanía jugando."
-    },
-    "longDesc": {
-      "ca": "Un joc per aprendre la geografia del món pas a pas, pensat per a l'escola. Cada continent guarda el seu progrés.",
-      "es": "Un juego para aprender la geografía del mundo paso a paso, pensado para la escuela. Cada continente guarda su progreso."
-    },
-    "features": {
-      "ca": [
-        "Tria què estudies: Europa, Amèrica, Àsia, Àfrica, Oceania o tot el món.",
-        "Estudia la llista per grups de 5, amb la bandera, i amaga les capitals per posar-te a prova.",
-        "Relaciona cada país amb la seva capital o escriu-la.",
-        "Situa cada país al mapa, amb zoom per als més petits.",
-        "Guanya estrelles, desbloqueja grups i col·lecciona banderes."
-      ],
-      "es": [
-        "Elige qué estudias: Europa, América, Asia, África, Oceanía o todo el mundo.",
-        "Estudia la lista por grupos de 5, con la bandera, y oculta las capitales para ponerte a prueba.",
-        "Relaciona cada país con su capital o escríbela.",
-        "Sitúa cada país en el mapa, con zoom para los más pequeños.",
-        "Gana estrellas, desbloquea grupos y colecciona banderas."
-      ]
-    },
     "audience": "escola",
-    "languages": ["ca"],
+    "languages": [
+      "ca"
+    ],
     "permissions": [],
     "version": "1.10",
     "icon": "/img/paisos/icona.webp",

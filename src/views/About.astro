@@ -1,33 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
-import { CONFIG } from '../config';
-import { t, routes, type Lang } from '../i18n';
+import { routes, otherLang, type Lang } from '../i18n';
+import { page } from '../content';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const tx = t[lang].about;
-const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const { data, Content } = page(lang, 'qui-som');
 ---
 
-<Base lang={lang} title={tx.title} description={tx.body[0]} alternate={routes[other].about}>
+<Base lang={lang} title={data.titol} description={data.descripcio} alternate={routes[otherLang(lang)].about}>
   <article class="wrap estret">
-    <h1>{tx.title}</h1>
-    {tx.body.map((p) => <p>{p}</p>)}
-
-    <h2>{tx.principlesTitle}</h2>
-    <ul class="principis">
-      {tx.principles.map(([titol, text]) => <li><strong>{titol}</strong> {text}</li>)}
-    </ul>
-
-    <h2>{tx.contact}</h2>
-    <p><a href={`mailto:${CONFIG.email}`}>{CONFIG.email}</a></p>
+    <h1>{data.titol}</h1>
+    <Content />
   </article>
 </Base>
 
 <style>
   .estret { max-width: 44rem; padding-top: 40px; padding-bottom: 32px; }
-  h2 { margin-top: 1.6em; }
-  .principis { padding-left: 1.2em; }
-  .principis li { margin-bottom: 0.5em; }
-  .principis li::marker { color: var(--taronja); }
+  .estret :global(h2) { margin-top: 1.6em; }
+  .estret :global(ul) { padding-left: 1.2em; }
+  .estret :global(li) { margin-bottom: 0.5em; }
+  .estret :global(li::marker) { color: var(--taronja); }
 </style>

@@ -1,13 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import { t, routes } from '../i18n';
+import { routes } from '../i18n';
+import { texts } from '../content';
+
+const ca = texts('ca').error_404;
+const es = texts('es').error_404;
 ---
 
-<Base lang="ca" title={t.ca.notFound.title} alternate={routes.es.home}>
+<Base lang="ca" title={ca.titol} alternate={routes.es.home}>
   <div class="wrap estret">
-    <h1>{t.ca.notFound.title}</h1>
-    <p lang="es" class="suau">{t.es.notFound.title}.</p>
-    <p><a class="btn" href={routes.ca.home}>{t.ca.notFound.back}</a></p>
+    <h1>{ca.titol}</h1>
+    <p lang="es" class="suau">{es.titol}.</p>
+    <p><a class="btn" href={routes.ca.home}>{ca.tornar}</a></p>
   </div>
 </Base>
 

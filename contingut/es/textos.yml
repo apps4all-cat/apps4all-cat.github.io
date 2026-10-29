@@ -1,0 +1,26 @@
+# Textos cortos de la web en castellano. Cambia solo lo que hay después de los dos puntos.
+descripcio_web: Apps gratuitas, sin anuncios ni rastreo, para resolver necesidades del día a día.
+salta_al_contingut: Ir al contenido
+menu:
+  apps: Apps
+  qui_som: Quiénes somos
+  cafe: Invita a un café
+fitxa:
+  per_a_escola: Para la escuela
+  descarrega: Descárgala
+  aviat: Pronto en Google Play y en F-Droid.
+  versio: Versión
+  idiomes: Idiomas
+  permisos: Permisos
+  cap_permis: Ninguno. Ni siquiera el de Internet.
+  captures: Capturas
+  privadesa: Política de privacidad
+  codi: Código fuente
+  tornar: ← Todas las apps
+peu:
+  lema: Apps gratuitas, sin anuncios y sin rastreo.
+  privadesa: Privacidad
+  contacte: Contacto
+error_404:
+  titol: Esta página no existe
+  tornar: Vuelve al inicio

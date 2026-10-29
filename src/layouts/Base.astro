@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import { CONFIG } from '../config';
-import { t, routes, langName, type Lang } from '../i18n';
+import { routes, langName, otherLang, type Lang } from '../i18n';
+import { texts } from '../content';
 
 interface Props {
   lang: Lang;
@@ -12,11 +13,11 @@ interface Props {
 }
 
 const { lang, title, description, alternate } = Astro.props;
-const tx = t[lang];
+const tx = texts(lang);
 const r = routes[lang];
-const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const other = otherLang(lang);
 const fullTitle = title ? `${title} · Apps4All` : 'Apps4All';
-const desc = description ?? tx.siteDesc;
+const desc = description ?? tx.descripcio_web;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const altUrl = new URL(alternate, Astro.site);
 const ogImage = new URL('/img/marca/og.png', Astro.site);
@@ -48,7 +49,7 @@ const ogImage = new URL('/img/marca/og.png', Astro.site);
     )}
   </head>
   <body>
-    <a class="skip" href="#contingut">{tx.skip}</a>
+    <a class="skip" href="#contingut">{tx.salta_al_contingut}</a>
     <div class="cinta" aria-hidden="true"></div>
     <header class="capcalera">
       <div class="wrap fila">
@@ -57,9 +58,9 @@ const ogImage = new URL('/img/marca/og.png', Astro.site);
           <span class="wordmark">apps<span class="quatre">4</span>all</span>
         </a>
         <nav aria-label="Menú">
-          <a href={`${r.home}#apps`}>{tx.nav.apps}</a>
-          <a href={r.about}>{tx.nav.about}</a>
-          <a class="nav-cafe" href={r.support}>☕ {tx.nav.support}</a>
+          <a href={`${r.home}#apps`}>{tx.menu.apps}</a>
+          <a href={r.about}>{tx.menu.qui_som}</a>
+          <a class="nav-cafe" href={r.support}>☕ {tx.menu.cafe}</a>
           <a class="nav-lang" href={alternate} hreflang={other} lang={other}>{langName[other]}</a>
         </nav>
       </div>
@@ -73,12 +74,12 @@ const ogImage = new URL('/img/marca/og.png', Astro.site);
       <div class="wrap peu-fila">
         <div>
           <span class="wordmark">apps<span class="quatre">4</span>all</span>
-          <p class="suau">{tx.footer.tagline}</p>
+          <p class="suau">{tx.peu.lema}</p>
         </div>
         <ul>
-          <li><a href={r.support}>{tx.nav.support}</a></li>
-          <li><a href={r.privacy}>{tx.footer.privacy}</a></li>
-          <li><a href={`mailto:${CONFIG.email}`}>{tx.footer.contact}</a></li>
+          <li><a href={r.support}>{tx.menu.cafe}</a></li>
+          <li><a href={r.privacy}>{tx.peu.privadesa}</a></li>
+          <li><a href={`mailto:${CONFIG.email}`}>{tx.peu.contacte}</a></li>
         </ul>
       </div>
     </footer>

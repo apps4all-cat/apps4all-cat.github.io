@@ -17,9 +17,10 @@ npm run build    # genera dist/
 
 | Què | On |
 |---|---|
-| Apps (textos, versió, captures, enllaços) | `src/data/apps.json` (es valida a `src/data/apps.ts`) |
+| **Tots els textos** (ca/es) | `contingut/` — com s'editen: `contingut/LLEGEIX-ME.md` |
+| Dades tècniques de les apps (versió, captures, enllaços) | `src/data/apps.json` (es valida a `src/data/apps.ts`) |
 | Liberapay, PayPal, GoatCounter, correu | `src/config.ts` (si un valor és buit, no surt) |
-| Textos de les pàgines (ca/es) i adreces | `src/i18n.ts` |
+| Adreces de cada idioma | `src/i18n.ts` |
 | Colors de la marca | `src/styles/global.css` |
 | Pàgines | `src/views/` (una per pàgina) i `src/pages/` (rutes de cada idioma) |
 | Imatges | `public/img/` (captures 540×960 en WebP, icones 256 px) |
@@ -28,7 +29,8 @@ npm run build    # genera dist/
 
 1. Copia l'icona (`marca/icones/<app>-botiga-512.png` del monorepo) a `public/img/<id>/icona.webp` (256 px) i les
    captures a `public/img/<id>/captura-N.webp` (540×960).
-2. Afegeix-la a `src/data/apps.json`. Si un enllaç encara no existeix, posa `null` i el botó no surt.
+2. Afegeix-la a `src/data/apps.json` (si un enllaç encara no existeix, posa `null` i el botó no surt) i escriu-ne els
+   textos a `contingut/ca/apps/<id>.md` i `contingut/es/apps/<id>.md`.
 3. `npm run build`: si falta algun camp, la compilació diu quin.
 
 ## Domini propi (més endavant)

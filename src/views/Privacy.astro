@@ -1,17 +1,17 @@
 ---
 import Base from '../layouts/Base.astro';
-import { t, routes, type Lang } from '../i18n';
+import { routes, otherLang, type Lang } from '../i18n';
+import { page } from '../content';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const tx = t[lang].privacy;
-const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const { data, Content } = page(lang, 'privadesa');
 ---
 
-<Base lang={lang} title={tx.title} description={tx.body[0]} alternate={routes[other].privacy}>
+<Base lang={lang} title={data.titol} description={data.descripcio} alternate={routes[otherLang(lang)].privacy}>
   <article class="wrap estret">
-    <h1>{tx.title}</h1>
-    {tx.body.map((p) => <p>{p}</p>)}
+    <h1>{data.titol}</h1>
+    <Content />
   </article>
 </Base>
 

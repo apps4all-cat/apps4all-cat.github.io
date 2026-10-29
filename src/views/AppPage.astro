@@ -1,63 +1,60 @@
 ---
 import Base from '../layouts/Base.astro';
 import type { App } from '../data/apps';
-import { t, routes, langNameIn, type Lang } from '../i18n';
+import { routes, langNameIn, otherLang, type Lang } from '../i18n';
+import { appText, texts } from '../content';
 
 interface Props { app: App; lang: Lang }
 const { app, lang } = Astro.props;
-const tx = t[lang].app;
-const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const tx = texts(lang).fitxa;
+const { data, Content } = appText(lang, app.id);
 const hasStore = app.playUrl || app.fdroidUrl;
 ---
 
-<Base lang={lang} title={app.name[lang]} description={app.shortDesc[lang]} alternate={routes[other].app(app.id)}>
+<Base lang={lang} title={data.nom} description={data.resum} alternate={routes[otherLang(lang)].app(app.id)}>
   <article class="wrap fitxa">
-    <a class="tornar" href={`${routes[lang].home}#apps`}>{tx.back}</a>
+    <a class="tornar" href={`${routes[lang].home}#apps`}>{tx.tornar}</a>
 
     <header class="cap">
       <img src={app.icon} width="112" height="112" alt="" />
       <div>
-        <h1>{app.name[lang]}</h1>
-        <p class="lead">{app.shortDesc[lang]}</p>
-        {app.audience === 'escola' && <span class="tag">{tx.forSchool}</span>}
+        <h1>{data.nom}</h1>
+        <p class="lead">{data.resum}</p>
+        {app.audience === 'escola' && <span class="tag">{tx.per_a_escola}</span>}
       </div>
     </header>
 
     <div class="cos">
-      <div>
-        <p>{app.longDesc[lang]}</p>
-        <h2>{tx.features}</h2>
-        <ul class="punts">{app.features[lang].map((f) => <li>{f}</li>)}</ul>
-      </div>
+      <div class="text"><Content /></div>
 
       <aside class="caixa">
-        <h2 class="visually-h3">{tx.get}</h2>
+        <h2 class="visually-h3">{tx.descarrega}</h2>
         {hasStore ? (
           <div class="botons">
             {app.playUrl && <a class="btn" href={app.playUrl}>Google Play</a>}
             {app.fdroidUrl && <a class="btn btn-sec" href={app.fdroidUrl}>F-Droid</a>}
           </div>
         ) : (
-          <p class="suau">{tx.soon}</p>
+          <p class="suau">{tx.aviat}</p>
         )}
         <dl>
-          <dt>{tx.version}</dt><dd>{app.version}</dd>
-          <dt>{tx.languages}</dt><dd>{app.languages.map((l) => langNameIn[lang][l]).join(', ')}</dd>
-          <dt>{tx.permissions}</dt><dd>{app.permissions.length ? app.permissions.join(', ') : tx.noPermissions}</dd>
+          <dt>{tx.versio}</dt><dd>{app.version}</dd>
+          <dt>{tx.idiomes}</dt><dd>{app.languages.map((l) => langNameIn[lang][l]).join(', ')}</dd>
+          <dt>{tx.permisos}</dt><dd>{app.permissions.length ? app.permissions.join(', ') : tx.cap_permis}</dd>
         </dl>
         <ul class="enllacos">
-          {app.privacyUrl && <li><a href={app.privacyUrl}>{tx.privacy}</a></li>}
-          {app.repoUrl && <li><a href={app.repoUrl}>{tx.source}</a></li>}
+          {app.privacyUrl && <li><a href={app.privacyUrl}>{tx.privadesa}</a></li>}
+          {app.repoUrl && <li><a href={app.repoUrl}>{tx.codi}</a></li>}
         </ul>
       </aside>
     </div>
 
     {app.screenshots.length > 0 && (
       <section>
-        <h2>{tx.screenshots}</h2>
+        <h2>{tx.captures}</h2>
         <ul class="captures">
           {app.screenshots.map((src, i) => (
-            <li><img src={src} width="540" height="960" loading="lazy" alt={`${app.name[lang]} · ${i + 1}`} /></li>
+            <li><img src={src} width="540" height="960" loading="lazy" alt={`${data.nom} · ${i + 1}`} /></li>
           ))}
         </ul>
       </section>
@@ -74,8 +71,8 @@ const hasStore = app.playUrl || app.fdroidUrl;
   .lead { font-size: 1.15rem; color: var(--text-suau); margin-bottom: 0.5em; }
   .cos { display: grid; gap: 32px; }
   @media (min-width: 820px) { .cos { grid-template-columns: 1.6fr 1fr; align-items: start; } }
-  .punts { padding-left: 1.2em; }
-  .punts li { margin-bottom: 0.4em; }
+  .text :global(ul) { padding-left: 1.2em; }
+  .text :global(li) { margin-bottom: 0.4em; }
   .caixa { background: var(--bg-alt); border-radius: var(--radius); padding: 22px; }
   .visually-h3 { font-size: 1.15rem; }
   .botons { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }

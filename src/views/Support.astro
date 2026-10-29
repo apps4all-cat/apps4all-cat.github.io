@@ -1,40 +1,40 @@
 ---
 import Base from '../layouts/Base.astro';
 import { CONFIG } from '../config';
-import { t, routes, type Lang } from '../i18n';
+import { routes, otherLang, type Lang } from '../i18n';
+import { page } from '../content';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const tx = t[lang].support;
-const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const { data, Content } = page(lang, 'suport');
 const hasAny = CONFIG.liberapay || CONFIG.paypal;
 ---
 
-<Base lang={lang} title={tx.title} description={tx.lead} alternate={routes[other].support}>
+<Base lang={lang} title={data.titol} description={data.entradeta} alternate={routes[otherLang(lang)].support}>
   <article class="wrap estret">
-    <h1>☕ {tx.title}</h1>
-    <p class="lead">{tx.lead}</p>
-    {tx.body.map((p) => <p>{p}</p>)}
+    <h1>☕ {data.titol}</h1>
+    <p class="lead">{data.entradeta}</p>
+    <Content />
 
     {hasAny ? (
       <div class="opcions">
         {CONFIG.liberapay && (
           <a class="opcio" href={CONFIG.liberapay} rel="noopener">
-            <strong>Liberapay</strong><span class="suau">{tx.liberapay}</span>
+            <strong>Liberapay</strong><span class="suau">{data.liberapay}</span>
           </a>
         )}
         {CONFIG.paypal && (
           <a class="opcio" href={CONFIG.paypal} rel="noopener">
-            <strong>PayPal</strong><span class="suau">{tx.paypal}</span>
+            <strong>PayPal</strong><span class="suau">{data.paypal}</span>
           </a>
         )}
       </div>
     ) : (
-      <p class="avis">{tx.soon}</p>
+      <p class="avis">{data.aviat}</p>
     )}
 
-    <p class="suau menors">{tx.minors}</p>
-    <p><strong>{tx.thanks}</strong></p>
+    <p class="suau menors">{data.menors}</p>
+    <p><strong>{data.gracies}</strong></p>
   </article>
 </Base>
 

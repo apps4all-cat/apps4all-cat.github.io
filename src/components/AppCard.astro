@@ -1,17 +1,19 @@
 ---
 import type { App } from '../data/apps';
-import { t, routes, type Lang } from '../i18n';
+import { routes, type Lang } from '../i18n';
+import { appText, texts } from '../content';
 
 interface Props { app: App; lang: Lang }
 const { app, lang } = Astro.props;
+const { data } = appText(lang, app.id);
 ---
 
 <a class="targeta" href={routes[lang].app(app.id)}>
   <img src={app.icon} width="72" height="72" alt="" loading="lazy" />
   <div>
-    <h3>{app.name[lang]}</h3>
-    <p class="suau">{app.shortDesc[lang]}</p>
-    {app.audience === 'escola' && <span class="tag">{t[lang].app.forSchool}</span>}
+    <h3>{data.nom}</h3>
+    <p class="suau">{data.resum}</p>
+    {app.audience === 'escola' && <span class="tag">{texts(lang).fitxa.per_a_escola}</span>}
   </div>
 </a>
 

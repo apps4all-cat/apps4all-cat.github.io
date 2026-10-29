@@ -2,23 +2,24 @@
 import Base from '../layouts/Base.astro';
 import AppCard from '../components/AppCard.astro';
 import { apps } from '../data/apps';
-import { t, routes, type Lang } from '../i18n';
+import { routes, otherLang, type Lang } from '../i18n';
+import { page, texts } from '../content';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const tx = t[lang];
-const other: Lang = lang === 'ca' ? 'es' : 'ca';
+const { data } = page(lang, 'inici');
+const menu = texts(lang).menu;
 ---
 
-<Base lang={lang} alternate={routes[other].home}>
+<Base lang={lang} alternate={routes[otherLang(lang)].home}>
   <section class="hero">
     <div class="wrap hero-fila">
       <div>
-        <h1>{tx.home.title}</h1>
-        <p class="lead">{tx.home.lead}</p>
+        <h1>{data.titol}</h1>
+        <p class="lead">{data.entradeta}</p>
         <div class="botons">
-          <a class="btn" href="#apps">{tx.nav.apps}</a>
-          <a class="btn btn-sec" href={routes[lang].about}>{tx.nav.about}</a>
+          <a class="btn" href="#apps">{menu.apps}</a>
+          <a class="btn btn-sec" href={routes[lang].about}>{menu.qui_som}</a>
         </div>
       </div>
       <img class="hero-logo" src="/img/marca/a4-480.webp" width="480" height="373" alt="" />
@@ -27,15 +28,15 @@ const other: Lang = lang === 'ca' ? 'es' : 'ca';
 
   <section class="section section-alt">
     <ul class="wrap principis">
-      {tx.home.principles.map(([titol, text]) => (
-        <li><strong>{titol}</strong><span class="suau">{text}</span></li>
+      {data.principis.map((p: { titol: string; text: string }) => (
+        <li><strong>{p.titol}</strong><span class="suau">{p.text}</span></li>
       ))}
     </ul>
   </section>
 
   <section class="section" id="apps">
     <div class="wrap">
-      <h2>{tx.home.appsTitle}</h2>
+      <h2>{data.titol_apps}</h2>
       <ul class="graella">
         {apps.map((app) => <li><AppCard app={app} lang={lang} /></li>)}
       </ul>

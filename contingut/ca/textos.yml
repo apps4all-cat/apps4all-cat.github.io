@@ -1,0 +1,26 @@
+# Textos curts del web en català. Canvia només el que hi ha després dels dos punts.
+descripcio_web: Apps gratuïtes, sense anuncis i sense rastreig, per resoldre necessitats del dia a dia.
+salta_al_contingut: Vés al contingut
+menu:
+  apps: Apps
+  qui_som: Qui som
+  cafe: Convida a un cafè
+fitxa:
+  per_a_escola: Per a l'escola
+  descarrega: Descarrega-la
+  aviat: Aviat a Google Play i a F-Droid.
+  versio: Versió
+  idiomes: Idiomes
+  permisos: Permisos
+  cap_permis: Cap. Ni tan sols el d'Internet.
+  captures: Captures
+  privadesa: Política de privadesa
+  codi: Codi font
+  tornar: ← Totes les apps
+peu:
+  lema: Apps gratuïtes, sense anuncis i sense rastreig.
+  privadesa: Privadesa
+  contacte: Contacte
+error_404:
+  titol: Aquesta pàgina no existeix
+  tornar: Torna a l'inici
